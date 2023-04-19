@@ -1,3 +1,5 @@
+const { validateToken } = require('../utils/auth');
+
 function validateEmail(email) {
     // expressão regular para validar o formato do e-mail
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,6 +47,21 @@ const checkPassword = async (req, res, next) => {
     next();
 };
 
+const authToken = (req, res, next) => {
+    const { authorization } = req.headers;
+    if (!authorization) {
+        return res.status(401).json({ message: 'Token not found' });
+    }
+    try {
+    const token = validateToken(authorization);
+    req.user = token;
+    next();
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'Expired or invalid token' });
+    }
+};
+
 // const check4 = async (req, res, next) => {};
 
 module.exports = {
@@ -52,4 +69,5 @@ module.exports = {
     checkDisplayName,
     checkEmail,
     checkPassword,
+    authToken,
 };

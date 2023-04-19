@@ -1,5 +1,5 @@
 // const userService = require('../services/user.service');
-const { checkAccount, generateUser } = require('../services/user.service');
+const { checkAccount, generateUser, getUsers } = require('../services/user.service');
 const { generateToken } = require('../utils/auth');
 
 const createUser = async (req, res) => {
@@ -18,4 +18,11 @@ const createUser = async (req, res) => {
     return res.status(201).json({ token });
 };
 
-module.exports = createUser;
+const getAllUsers = async (req, res) => {
+        const users = await getUsers();
+        return res.status(200).json(users);
+};
+
+module.exports = {
+    createUser,
+    getAllUsers };
