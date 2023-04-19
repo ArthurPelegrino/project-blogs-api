@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
     if (checkEmail) {
         return res.status(409).json({ message: 'User already registered' });
     }
-    console.log('checkEmail', checkEmail);
+    // console.log('checkEmail', checkEmail);
 
     const token = generateToken(password);
 

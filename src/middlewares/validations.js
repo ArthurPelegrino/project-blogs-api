@@ -56,7 +56,7 @@ const authToken = (req, res, next) => {
     }
     try {
     const token = validateToken(authorization);
-    console.log(token);
+    // console.log(token);
     req.user = token;
     next();
     } catch (err) {
@@ -64,6 +64,16 @@ const authToken = (req, res, next) => {
         return res.status(401).json({ message: 'Expired or invalid token' });
     }
 };
+
+const checkNewCategorie = (req, res, next) => {
+    const { name } = req.body;
+
+    if (!name) {
+        return res.status(400).json({ message: '"name" is required' });
+    }
+
+    next();
+}; 
 
 // const check4 = async (req, res, next) => {};
 
@@ -73,4 +83,5 @@ module.exports = {
     checkEmail,
     checkPassword,
     authToken,
+    checkNewCategorie,
 };

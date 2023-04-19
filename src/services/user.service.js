@@ -1,11 +1,11 @@
 const { User } = require('../models');
 
 const checkAccount = async (email) => {
-console.log(email);
+// console.log(email);
     const login = await User.findOne({
         where: { email },
     });
-    console.log('login', login);
+    // console.log('login', login);
     return login;
 };
 
@@ -18,7 +18,7 @@ const getUsers = async () => {
 
 const generateUser = async (displayName, email, password, image) => {
     const newUser = await User.create({ displayName, email, password, image });
-    console.log(newUser);
+    // console.log(newUser);
   return newUser;
 };
 
