@@ -8,7 +8,6 @@ const singIn = async (req, res) => {
     if (!login) {
         return res.status(400).json({ message: 'Invalid fields' });
     }
-    console.log('#@#@#@##@#@#@@#@##@#@#', login.dataValues);
     const token = generateToken(login.dataValues);
 
     return res.status(200).json({ token });

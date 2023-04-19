@@ -8,12 +8,10 @@ const { User } = require('../models');
 // teste();
 
 const checkAccount = async (email) => {
-    console.log(email);
     const login = await User.findOne({
         where: { email },
         attributes: { exclude: ['password'] },
     });
-    console.log('login', login);
     return login;
 };
 

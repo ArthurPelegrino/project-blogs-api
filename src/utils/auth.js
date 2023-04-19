@@ -12,9 +12,8 @@ const generateToken = (payload) => {
     return token;
 };
 
-const validateToken = (token) => {
-    if (!token) return 'Token not found';
-    const isValid = jwt.verify(token, secretKey);
+const validateToken = (authorization) => {
+    const isValid = jwt.verify(authorization, secretKey);
     return isValid;
 };
 

@@ -22,6 +22,17 @@ const generateUser = async (displayName, email, password, image) => {
   return newUser;
 };
 
+const getById = async (id) => {
+    // console.log('@#@#$@##@@#@##@#@ id passado na service', id);
+        const user = await User.findOne({
+            where: { id },
+            attributes: { exclude: ['password'] },
+        });
+        // console.log(user);
+        return user;
+    };
+
 module.exports = { checkAccount,
 generateUser,
-getUsers };
+getUsers,
+getById };

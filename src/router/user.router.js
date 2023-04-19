@@ -1,5 +1,5 @@
 const userRouter = require('express').Router();
-const { createUser, getAllUsers } = require('../controllers/user.controller');
+const { createUser, getAllUsers, getUserById } = require('../controllers/user.controller');
 const {
     checkDisplayName,
     checkEmail,
@@ -15,5 +15,6 @@ createUser,
 );
 
 userRouter.get('/', authToken, getAllUsers);
+userRouter.get('/:id', authToken, getUserById);
 
 module.exports = userRouter;
