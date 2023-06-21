@@ -48,8 +48,8 @@ const checkPassword = async (req, res, next) => {
 };
 
 const authToken = (req, res, next) => {
-    const { id } = req.body;
-    console.log(id);
+    // const { id } = req.body;
+    // console.log(id);
     const { authorization } = req.headers;
     if (!authorization) {
         return res.status(401).json({ message: 'Token not found' });
